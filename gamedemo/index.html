@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+  <script>
+  // Initialize Eruda
+  eruda.init();
+  </script>
+
+  <meta charset="UTF-8">
+  <title>The frantic run of the valorous rabbit</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+<link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div id="world" />
+<div id="gameoverInstructions">
+  Game Over
+</div>
+<div id="dist">
+    <div class="label">Distance</div>
+    <div id="distValue">000</div>
+
+    <div class="label">User Points</div>
+    <div id="distValue" class="ek">000</div>
+    <div class="button-c">
+      <button id="start-button">
+        Start Game
+      </button>
+    </div>
+</div>
+
+<script>
+  const url1 = window.location.href;
+    const queryString1 = url1.split('?')[1];
+    const number12 = parseInt(queryString1, 10);
+  async function getGamePts() {
+    
+
+            const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyMSIsImV4cCI6NzExOTgyOTU1M30.kFvro8Ox6l2ElpM8vqhVrkU8dx5U3vqdZ9RSEiiu0aw'; // Replace with your actual Bearer token
+
+            try {
+                const response = await fetch("http://127.0.0.1:8000/user/" + number12, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                const elements = document.getElementsByClassName('ek');
+                for (let element of elements) {
+                    element.innerText = `Game Points: ${data}`;
+                }
+            } catch (error) {
+                const elements = document.getElementsByClassName('ek');
+                for (let element of elements) {
+                    element.innerText = `Error: ${error.message}`;
+                }
+            }
+        }
+
+        // Call the function when the page loads
+        getGamePts();
+</script>
+
+<div id="instructions">Click to jump<span class="lightInstructions"> — Grab the carrots / avoid the hedgehogs</span></div>
+
+<nav>
+  <ul>
+      <li><a href="index.html" class="nav-link active">
+        <i class="fas fa-home"></i>
+        <span>
+          Home
+        </span>
+      </a></li>
+      <li><a href="tasks.html" class="nav-link">
+        <i class="fas fa-tasks"></i>
+        <span>
+          Tasks
+        </span>
+      </a></li>
+      <li><a href="frens.html" class="nav-link">
+          <i class="fas fa-users"></i>
+          <span>Frens</span>
+          </a></li>
+  </ul>
+</nav>
+<div id="credits">
+  <!-- <p><a href="https://codepen.io/Yakudoo/" target="blank">other codepens</a> | <a href="https://www.epic.net" target="blank">epic.net</a></p> -->
+</div>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r80/three.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js'></script>
+<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/264161/OrbitControls.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>
