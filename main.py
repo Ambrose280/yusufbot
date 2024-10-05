@@ -33,7 +33,7 @@ WEBHOOK_PATH = '/webhook'
 CHANNEL_USERNAME = '@bobcoinhome'
 WEB_APP_URL = "https://new-game-web-app.onrender.com"
 # WEBHOOK_URL = f"https://b122-105-116-7-95.ngrok-free.app{WEBHOOK_PATH}"
-WEBHOOK_URL = f"https://.onrender.com{WEBHOOK_PATH}"
+WEBHOOK_URL = f"https://yusufbot-we1g.onrender.com{WEBHOOK_PATH}"
 
 logging.basicConfig(level=logging.INFO)
 
